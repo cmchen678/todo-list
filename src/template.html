@@ -6,6 +6,44 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="container">
+
+        <div class="sidebar">
+            <div class="task-list-container">
+                <button class="add-task-btn" command="show-modal" commandfor="task-input">Add Task</button>
+                <dialog id="task-input" closedby="any">
+                    <form id="task-form">
+                        <label for="task_title">Task:</label>
+                        <input type="text" id="task_title" name="task_title"/>
+                        <label for="task_desc">Description:</label>
+                        <input type="text" id="task_desc" name="task_desc"/>
+                        <label for="due_date">Due Date:</label>
+                        <input type="date" id="due_date" name="due_date" value="2026-07-22"/>
+                        <fieldset>
+                            <legend>Task Priority Level:</legend>
+                            <label>
+                                <input type="radio" name="task_prio" value="High"/>High
+                            </label>
+                            <label>
+                                <input type="radio" name="task_prio" value="High"/>Medium
+                            </label>
+                            <label>
+                                <input type="radio" name="task_prio" value="High"/>Low
+                            </label>
+                        </fieldset>
+                        <button class="submit-task-btn" type="submit" action="" method="POST">Add Task</button>
+                    </form>
+                </dialog>
+            </div>
+
+            <div class="project-list-container">
+
+            </div>
+        </div>
+
+        <div class="content">
+            
+        </div>
+    </div>
 </body>
 </html>
