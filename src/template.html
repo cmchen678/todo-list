@@ -9,6 +9,7 @@
     <div class="container">
 
         <div class="sidebar">
+
             <div class="task-list-container">
                 <button class="add-task-btn" command="show-modal" commandfor="task-input">Add Task</button>
                 <dialog id="task-input" closedby="any">
@@ -37,12 +38,19 @@
             </div>
 
             <div class="project-list-container">
-
+                <button class="add-project-btn" command="show-modal" commandfor="project-input">Add Project</button>
+                <dialog id="project-input" closedby="any">
+                    <form id="project-form">
+                        <label for="project_title">Project:</label>
+                        <input type="text" id="project_title" name="project_title"/>
+                    </form>
+                </dialog>
             </div>
+
         </div>
 
         <div class="content">
-            
+
         </div>
     </div>
 </body>
