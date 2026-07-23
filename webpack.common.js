@@ -11,6 +11,7 @@ export default {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            title: 'To-do List',
             template: "./src/template.html"
         }),
     ],
