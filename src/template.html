@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="sidebar">
+
+            <div class="task-list-container">
+                <dialog id="task-input" closedby="any">
+                    <form id="task-form">
+                        <label for="task_title">Task:</label>
+                        <input type="text" id="task_title" name="task_title"/>
+                        <label for="task_desc">Description:</label>
+                        <input type="text" id="task_desc" name="task_desc"/>
+                        <label for="due_date">Due Date:</label>
+                        <input type="date" id="due_date" name="due_date" value="2026-07-22"/>
+                        <fieldset>
+                            <legend>Task Priority Level:</legend>
+                            <label>
+                                <input type="radio" name="task_prio" value="High" checked/>High
+                            </label>
+                            <label>
+                                <input type="radio" name="task_prio" value="Medium"/>Medium
+                            </label>
+                            <label>
+                                <input type="radio" name="task_prio" value="Low"/>Low
+                            </label>
+                        </fieldset>
+                        <button class="submit-task-btn" type="submit" action="" method="POST">Add Task</button>
+                    </form>
+                </dialog>
+            </div>
+
+            <div class="project-list-container">
+                <button class="add-project-btn" command="show-modal" commandfor="project-input">Add Project</button>
+                <dialog id="project-input" closedby="any">
+                    <form id="project-form">
+                        <label for="project_title">Project:</label>
+                        <input type="text" id="project_title" name="project_title"/>
+                        <button class="submit-project-btn" type="submit" action="" method="POST">Add Project</button>
+                    </form>
+                </dialog>
+                <div class="project-list"></div>
+            </div>
+
+        </div>
+
+        <div class="content-container">
+            <h1 class="project-title"></h1>
+            <div class="card-container"></div>
+        </div>
+    </div>
+</body>
+</html>
