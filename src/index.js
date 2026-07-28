@@ -30,14 +30,10 @@ projectForm.addEventListener('submit', createProject);
 const cardContainer = document.querySelector('.card-container');
 cardContainer.addEventListener('click', (event) => {
     const clickedCard = event.target.closest('.task-card');
+    const collapsibleContainer = clickedCard.querySelector('.collapsible-container');
     if (!clickedCard) return;
 
-    const allCards = cardContainer.querySelectorAll('.task-card');
-    allCards.forEach(card => {
-        card.classList.remove('is-open');
-    })
-
-    clickedCard.classList.add('is-open');
+    collapsibleContainer.classList.toggle('is-open');
 })
 
 function createTask(event) {
