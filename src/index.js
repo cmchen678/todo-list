@@ -11,15 +11,36 @@ addTaskBtns.forEach(button => {
     })
 })
 
+const deleteProjectBtns = document.querySelectorAll('.delete-project-btn');
+deleteProjectBtns.forEach(button => {
+    button.addEventListener('click', (event) => {
+        const projectCard = event.target.closest('.project-card');
+        const id = projectCard.dataset.id;
+        const index = myProjects.findIndex(project => project.id === id);
+        myProjects.splice(index, 1);
+        console.log(myProjects);
+    })
+})
+
 const projectList = document.querySelector('.project-list');
 projectList.addEventListener('click', (event) => {
     if (!event.target.closest('.project-card')) return;
     const projectCard = event.target.closest('.project-card');
     const id = projectCard.dataset.id;
     const index = myProjects.findIndex(project => project.id === id);
-    activeProject = myProjects[index];
-    displayProjectTitle();
-    displayTasks();
+    if (event.target.classList.contains('delete-project-btn')) {
+        myProjects.splice(index, 1);
+        displayProjects();
+        if (activeProject.id === id) {
+            activeProject = myProjects[0];
+            displayProjectTitle();
+            displayTasks();
+        }
+    } else {
+        activeProject = myProjects[index];
+        displayProjectTitle();
+        displayTasks();
+    }
 })
 
 const taskForm = document.querySelector('#task-form');
