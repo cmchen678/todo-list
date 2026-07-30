@@ -69,6 +69,7 @@ function createProject(event) {
     const lastIndex = myProjects.length - 1;
     activeProject = myProjects[lastIndex];
     displayProjects();
+    displayProjectTitle();
     displayTasks();
     projectForm.reset();
     dialog.close();
