@@ -19,8 +19,6 @@ export function displayProjects() {
         addTaskBtn.setAttribute('commandfor', 'task-input');
         addTaskBtn.textContent = 'Add Task';
 
-        projectCard.append(title, addTaskBtn);
-
         const taskList = document.createElement('div');
         taskList.classList.add('task-list');
 
@@ -34,7 +32,14 @@ export function displayProjects() {
             taskList.append(title);
         }
 
-        projectCard.append(taskList);
+        projectCard.append(title, addTaskBtn, taskList);
+
+        if (project !== myProjects[0]) {
+            const deleteProjectBtn = document.createElement('button');
+            deleteProjectBtn.classList.add('delete-project-btn');
+            deleteProjectBtn.textContent = 'Delete Project';
+            addTaskBtn.after(deleteProjectBtn);
+        }
 
         projectList.append(projectCard);
     }

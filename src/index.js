@@ -13,6 +13,7 @@ addTaskBtns.forEach(button => {
 
 const projectList = document.querySelector('.project-list');
 projectList.addEventListener('click', (event) => {
+    if (!event.target.closest('.project-card')) return;
     const projectCard = event.target.closest('.project-card');
     const id = projectCard.dataset.id;
     const index = myProjects.findIndex(project => project.id === id);
