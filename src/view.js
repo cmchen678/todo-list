@@ -57,6 +57,7 @@ export function displayTasks() {
     for (const task of activeProject.tasks) {
         const taskCard = document.createElement('div');
         taskCard.classList.add('task-card')
+        taskCard.dataset.id = task.id;
 
         const taskHeader = document.createElement('div');
         taskHeader.classList.add('task-header');

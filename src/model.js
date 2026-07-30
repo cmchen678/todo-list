@@ -6,6 +6,13 @@ class Task {
         this.priority = priority;
         this.id = crypto.randomUUID();
     }
+
+    editTask(newTitle, newDescription, newDueDate, newPriority) {
+        this.title = newTitle;
+        this.description = newDescription;
+        this.dueDate = newDueDate;
+        this.priority = newPriority;
+    }
 }
 
 const myProjects = [];
@@ -19,6 +26,10 @@ class Project {
 
     addTaskToProject(task) {
         this.tasks.push(task);
+    }
+
+    deleteTask(index) {
+        this.tasks.splice(index, 1);
     }
 }
 
