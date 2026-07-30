@@ -58,8 +58,25 @@ export function displayTasks() {
         const taskCard = document.createElement('div');
         taskCard.classList.add('task-card')
 
+        const taskHeader = document.createElement('div');
+        taskHeader.classList.add('task-header');
+
         const title = document.createElement('h4');
         title.textContent = task.title;
+
+        const taskBtnContainer = document.createElement('div');
+        taskBtnContainer.classList.add('task-btn-container');
+
+        const editTaskBtn = document.createElement('button');
+        editTaskBtn.classList.add('edit-task-btn');
+        editTaskBtn.textContent = 'Edit';
+
+        const deleteTaskBtn = document.createElement('button');
+        deleteTaskBtn.classList.add('delete-task-btn');
+        deleteTaskBtn.textContent = 'Delete';
+
+        taskBtnContainer.append(editTaskBtn, deleteTaskBtn);
+        taskHeader.append(title, taskBtnContainer);
 
         const dueDate = document.createElement('p');
         dueDate.textContent = `Due: ${task.dueDate}`;
@@ -80,7 +97,7 @@ export function displayTasks() {
 
         collapseContainer.append(collapsibleContent);
 
-        taskCard.append(title, dueDate, collapseContainer);
+        taskCard.append(taskHeader, dueDate, collapseContainer);
         container.append(taskCard);
     }
 }
