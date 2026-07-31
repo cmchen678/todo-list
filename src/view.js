@@ -1,5 +1,5 @@
 import { myProjects } from "./model.js";
-import { activeProject } from "./index.js";
+import { activeProject, activeTask } from "./index.js";
 
 export function displayProjects() {
     const projectList = document.querySelector('.project-list');
@@ -27,6 +27,7 @@ export function displayProjects() {
             taskItem.classList.add('project-task');
 
             const title = document.createElement('h4');
+
             title.textContent = task.title;
 
             taskList.append(title);
@@ -63,6 +64,7 @@ export function displayTasks() {
         taskHeader.classList.add('task-header');
 
         const title = document.createElement('h4');
+        title.classList.add('task-title');
         title.textContent = task.title;
 
         const taskBtnContainer = document.createElement('div');
@@ -80,6 +82,7 @@ export function displayTasks() {
         taskHeader.append(title, taskBtnContainer);
 
         const dueDate = document.createElement('p');
+        dueDate.classList.add('task-due-date');
         dueDate.textContent = `Due: ${task.dueDate}`;
 
         const collapseContainer = document.createElement('div');
@@ -89,9 +92,11 @@ export function displayTasks() {
         collapsibleContent.classList.add('collapsible-content');
 
         const description = document.createElement('p');
+        description.classList.add('task-description');
         description.textContent = task.description;
 
         const priority = document.createElement('p');
+        priority.classList.add('task-priority')
         priority.textContent = `Priority Level: ${task.priority}`
 
         collapsibleContent.append(description, priority);
@@ -101,4 +106,13 @@ export function displayTasks() {
         taskCard.append(taskHeader, dueDate, collapseContainer);
         container.append(taskCard);
     }
+}
+
+export function displayTask() {
+    const id = activeTask.id;
+    const taskCard = document.querySelector(`[data-id="${id}"]`);
+    taskCard.querySelector('.task-title').textContent = activeTask.title;
+    taskCard.querySelector('.task-due-date').textContent = activeTask.dueDate;
+    taskCard.querySelector('.task-description').textContent = activeTask.description;
+    taskCard.querySelector('.task-priority').textContent = activeTask.priority;
 }

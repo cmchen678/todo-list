@@ -1,6 +1,6 @@
 import "./style.css";
 import { Task, Project, myProjects } from "./model.js";
-import { displayProjects, displayProjectTitle, displayTasks } from "./view.js";
+import { displayProjects, displayProjectTitle, displayTasks, displayTask } from "./view.js";
 
 
 const addTaskBtns = document.querySelectorAll('.add-task-btn');
@@ -111,7 +111,7 @@ function editTask(event) {
     const priority = formData.get('task_prio');
     activeTask.editTask(title, description, dueDate, priority);
     displayProjects();
-    displayTasks();
+    displayTask();
     dialog.close();
 }
 
@@ -137,7 +137,7 @@ function createProject(event) {
 const generalTasks = new Project('General');
 myProjects.push(generalTasks);
 export let activeProject = myProjects[0];
-let activeTask;
+export let activeTask;
 displayProjects();
 displayProjectTitle();
 displayTasks();
