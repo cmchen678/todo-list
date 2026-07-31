@@ -51,6 +51,29 @@
         <div class="content-container">
             <h1 class="project-title"></h1>
             <div class="card-container"></div>
+            <dialog id="edit-task-input" closedby="any">
+                <form id="edit-task-form">
+                    <label for="task_title">Task:</label>
+                    <input type="text" id="task_title" name="task_title"/>
+                    <label for="task_desc">Description:</label>
+                    <input type="text" id="task_desc" name="task_desc"/>
+                    <label for="due_date">Due Date:</label>
+                    <input type="date" id="due_date" name="due_date" value="2026-07-22"/>
+                    <fieldset>
+                        <legend>Task Priority Level:</legend>
+                        <label>
+                            <input type="radio" name="task_prio" value="High" checked/>High
+                        </label>
+                        <label>
+                            <input type="radio" name="task_prio" value="Medium"/>Medium
+                        </label>
+                        <label>
+                            <input type="radio" name="task_prio" value="Low"/>Low
+                        </label>
+                    </fieldset>
+                    <button class="edit-task-btn" type="submit" action="" method="POST">Edit Task</button>
+                </form>
+            </dialog>
         </div>
     </div>
 </body>

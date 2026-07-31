@@ -51,6 +51,9 @@ taskForm.addEventListener('submit', createTask);
 const projectForm = document.querySelector('#project-form');
 projectForm.addEventListener('submit', createProject);
 
+const editTaskForm = document.querySelector('#edit-task-form');
+editTaskForm.addEventListener('submit', editTask);
+
 const cardContainer = document.querySelector('.card-container');
 cardContainer.addEventListener('click', (event) => {
     const clickedCard = event.target.closest('.task-card');
@@ -64,19 +67,13 @@ cardContainer.addEventListener('click', (event) => {
         displayProjects();
         displayTasks();
     } else if (event.target.classList.contains('edit-task-btn')) {
-        const dialog = document.querySelector('#task-input');
+        const dialog = document.querySelector('#edit-task-input');
         dialog.showModal();
-
-        /* This calls the same form used to create a new task, which has a create task button. Need to create a new edit task form with an edit task button with a different event listener.
-        const taskForm = document.querySelector('#task-form');
-
-        const formData = new FormData(taskForm);
-        const title = formData.get('task_title');
-        const description = formData.get('task_desc');
-        const dueDate = formData.get('due_date');
-        const priority = formData.get('task_prio');
-        */
-        activeProject.tasks[index].editTask(title, description, dueDate, priority);
+        activeTask = activeProject.tasks[index];
+        editTaskForm.elements["task_title"].value = activeTask.title;
+        editTaskForm.elements["task_desc"].value = activeTask.description;
+        editTaskForm.elements["due_date"].value = activeTask.dueDate;
+        editTaskForm.elements["task_prio"].value = activeTask.priority;
     } else {
         const collapsibleContainer = clickedCard.querySelector('.collapsible-container');
         collapsibleContainer.classList.toggle('is-open');
@@ -86,7 +83,6 @@ cardContainer.addEventListener('click', (event) => {
 function createTask(event) {
     event.preventDefault();
 
-    const taskForm = document.querySelector('#task-form');
     const dialog = document.querySelector('#task-input');
 
     const formData = new FormData(taskForm);
@@ -100,6 +96,22 @@ function createTask(event) {
     displayProjects();
     displayTasks();
     taskForm.reset();
+    dialog.close();
+}
+
+function editTask(event) {
+    event.preventDefault();
+
+    const dialog = document.querySelector('#edit-task-input');
+
+    const formData = new FormData(editTaskForm);
+    const title = formData.get('task_title');
+    const description = formData.get('task_desc');
+    const dueDate = formData.get('due_date');
+    const priority = formData.get('task_prio');
+    activeTask.editTask(title, description, dueDate, priority);
+    displayProjects();
+    displayTasks();
     dialog.close();
 }
 
@@ -125,6 +137,7 @@ function createProject(event) {
 const generalTasks = new Project('General');
 myProjects.push(generalTasks);
 export let activeProject = myProjects[0];
+let activeTask;
 displayProjects();
 displayProjectTitle();
 displayTasks();
