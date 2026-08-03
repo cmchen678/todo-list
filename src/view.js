@@ -44,6 +44,10 @@ export function displayProjects() {
 
         projectList.append(projectCard);
     }
+
+    const id = activeProject.id;
+    const activeCard = document.querySelector(`[data-id="${id}"]`);
+    activeCard.classList.add('active');
 }
 
 export function displayProjectTitle() {
