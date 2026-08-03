@@ -1,17 +1,19 @@
 class Task {
-    constructor(title, description, dueDate, priority) {
+    constructor(title, description, dueDate, priority, notes) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.notes = notes;
         this.id = crypto.randomUUID();
     }
 
-    editTask(newTitle, newDescription, newDueDate, newPriority) {
+    editTask(newTitle, newDescription, newDueDate, newPriority, newNotes) {
         this.title = newTitle;
         this.description = newDescription;
         this.dueDate = newDueDate;
         this.priority = newPriority;
+        this.notes = newNotes;
     }
 }
 

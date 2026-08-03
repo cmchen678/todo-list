@@ -81,6 +81,7 @@ cardContainer.addEventListener('click', (event) => {
         editTaskForm.elements["task_desc"].value = activeTask.description;
         editTaskForm.elements["due_date"].value = activeTask.dueDate;
         editTaskForm.elements["task_prio"].value = activeTask.priority;
+        editTaskForm.elements["task_notes"].value = activeTask.notes;
     } else {
         const collapsibleContainer = clickedCard.querySelector('.collapsible-container');
         collapsibleContainer.classList.toggle('is-open');
@@ -97,8 +98,9 @@ function createTask(event) {
     const description = formData.get('task_desc');
     const dueDate = formData.get('due_date');
     const priority = formData.get('task_prio');
+    const notes = formData.get('task_notes');
 
-    const task = new Task(title, description, dueDate, priority);
+    const task = new Task(title, description, dueDate, priority, notes);
     activeProject.addTaskToProject(task);
     displayProjects();
     displayTasks();
@@ -116,7 +118,9 @@ function editTask(event) {
     const description = formData.get('task_desc');
     const dueDate = formData.get('due_date');
     const priority = formData.get('task_prio');
-    activeTask.editTask(title, description, dueDate, priority);
+    const notes = formData.get('task_notes');
+
+    activeTask.editTask(title, description, dueDate, priority, notes);
     displayProjects();
     displayTask();
     dialog.close();
