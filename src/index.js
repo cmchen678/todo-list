@@ -27,26 +27,25 @@ projectList.addEventListener('click', (event) => {
     const projectCard = event.target.closest('.project-card');
     if (!projectCard) return;
 
-    const cards = projectList.querySelectorAll('.project-card');
-    cards.forEach(card => {
-        card.classList.remove('active');
-    })
-    const clickedCard = event.target.closest('.project-card');
-    clickedCard.classList.add('active');
-
     const id = projectCard.dataset.id;
     const index = myProjects.findIndex(project => project.id === id);
 
     if (event.target.classList.contains('delete-project-btn')) {
         myProjects.splice(index, 1);
-        displayProjects();
         if (activeProject.id === id) {
             activeProject = myProjects[0];
             displayProjectTitle();
             displayTasks();
         }
+        displayProjects();
     } else {
         activeProject = myProjects[index];
+        const cards = projectList.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            card.classList.remove('active');
+        })
+        const clickedCard = event.target.closest('.project-card');
+        clickedCard.classList.add('active');
         displayProjectTitle();
         displayTasks();
     }

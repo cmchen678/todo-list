@@ -1,9 +1,10 @@
 :root {
-    --primary-color: #1a1a1a;
-    --secondary-color: #121212;
-    --text-primary: white;
+    --primary-color: #2f343f;
+    --secondary-color: #262b34;
+    --text-primary: #e3e6ec;
     --text-secondary: #54565a;
-    --accent: #17b9bd;
+    --accent: #8cb372;
+    --accent-two: #5ca4e0;
 }
 
 * {
@@ -39,7 +40,7 @@ h2 {
 }
 
 .sidebar {
-    border-right: 1px solid var(--accent);
+    border-right: 1px solid var(--accent-two);
     height: 100vh;
     width: 15%;
     padding: 20px;
@@ -88,7 +89,11 @@ h2 {
 }
 
 .task-card:has(.is-open) {
-    box-shadow: inset 0 5px 0 0 var(--accent)
+    box-shadow: inset 0 5px 0 0 var(--accent-two)
+}
+
+.task-card:has(.is-open) h2 {
+    color: var(--accent);
 }
 
 .collapsible-container {
@@ -107,8 +112,24 @@ h2 {
 }
 
 dialog {
-    height: 500px;
+    background-color: var(--secondary-color);
+    color: var(--text-primary);
+    border: 2px solid var(--accent-two);
+}
+
+#task-input, #edit-task-input {
+    height: 360px;
     width: 1000px;
+}
+
+input, textarea, fieldset {
+    background-color: var(--secondary-color);
+    color: var(--text-primary);
+    border: 1px solid var(--text-primary);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
 
 textarea {
@@ -117,9 +138,14 @@ textarea {
     resize: none;
 }
 
+h4 {
+    margin-bottom: 0;
+    padding: 0;
+}
+
 .task-notes {
     white-space: pre-wrap;
-    border: 1px solid var(--accent);
+    border: 1px solid var(--accent-two);
     padding: 10px;
     margin-top: 10px;
 }

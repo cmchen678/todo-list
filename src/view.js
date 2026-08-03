@@ -113,11 +113,15 @@ export function displayTasks() {
         priority.classList.add('task-priority')
         priority.textContent = `Priority: ${task.priority}`
 
+        const noteContainer = document.createElement('div');
+        const noteLabel = document.createElement('h4');
+        noteLabel.textContent = "Notes";
         const notes = document.createElement('p');
         notes.classList.add('task-notes');
         notes.textContent = task.notes;
+        noteContainer.append(noteLabel, notes);
 
-        collapsibleContent.append(priority, notes);
+        collapsibleContent.append(priority, noteContainer);
 
         collapseContainer.append(collapsibleContent);
 
