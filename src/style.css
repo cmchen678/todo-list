@@ -24,9 +24,14 @@ body {
     padding: 0;
 }
 
-h1, h2, h3 {
+h1 {
     padding: 0;
     margin-top: 0;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
 }
 
 .container {
@@ -55,6 +60,12 @@ h1, h2, h3 {
 
 .project-card.active h2 {
     color: var(--accent);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .content-container {

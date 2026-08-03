@@ -10,6 +10,9 @@ export function displayProjects() {
         projectCard.classList.add('project-card');
         projectCard.dataset.id = project.id;
 
+        const taskHeader = document.createElement('div');
+        taskHeader.classList.add('task-header');
+
         const title = document.createElement('h2');
         title.textContent = project.title;
 
@@ -17,7 +20,13 @@ export function displayProjects() {
         addTaskBtn.classList.add('add-task-btn');
         addTaskBtn.setAttribute('command', 'show-modal');
         addTaskBtn.setAttribute('commandfor', 'task-input');
-        addTaskBtn.textContent = 'Add Task';
+        addTaskBtn.textContent = '+';
+
+        const taskBtnContainer = document.createElement('div');
+        taskBtnContainer.classList.add('task-btn-container');
+        taskBtnContainer.append(addTaskBtn);
+
+        taskHeader.append(title, taskBtnContainer);
 
         const taskList = document.createElement('div');
         taskList.classList.add('task-list');
@@ -33,12 +42,12 @@ export function displayProjects() {
             taskList.append(title);
         }
 
-        projectCard.append(title, addTaskBtn, taskList);
+        projectCard.append(taskHeader, taskList);
 
         if (project !== myProjects[0]) {
             const deleteProjectBtn = document.createElement('button');
             deleteProjectBtn.classList.add('delete-project-btn');
-            deleteProjectBtn.textContent = 'Delete Project';
+            deleteProjectBtn.textContent = 'Del';
             addTaskBtn.after(deleteProjectBtn);
         }
 
@@ -67,7 +76,7 @@ export function displayTasks() {
         const taskHeader = document.createElement('div');
         taskHeader.classList.add('task-header');
 
-        const title = document.createElement('h3');
+        const title = document.createElement('h2');
         title.classList.add('task-title');
         title.textContent = task.title;
 
@@ -88,7 +97,7 @@ export function displayTasks() {
         description.classList.add('task-description');
         description.textContent = task.description;
 
-        taskHeader.append(title, taskBtnContainer, description);
+        taskHeader.append(title, taskBtnContainer);
 
         const dueDate = document.createElement('p');
         dueDate.classList.add('task-due-date');
@@ -112,7 +121,7 @@ export function displayTasks() {
 
         collapseContainer.append(collapsibleContent);
 
-        taskCard.append(taskHeader, dueDate, collapseContainer);
+        taskCard.append(taskHeader, description, dueDate, collapseContainer);
         container.append(taskCard);
     }
 }
