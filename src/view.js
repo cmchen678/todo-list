@@ -1,4 +1,5 @@
 import { format, parseISO } from "date-fns";
+import { enUS } from 'date-fns/locale';
 import { myProjects } from "./model.js";
 import { activeProject, activeTask } from "./index.js";
 
@@ -106,7 +107,7 @@ export function displayTasks() {
             dueDate.textContent = 'No due date';
         } else {
             const date = parseISO(task.dueDate);
-            dueDate.textContent = `Due: ${format(date,  "MM/dd/yyyy")}`;
+            dueDate.textContent = `Due: ${format(date,  "MM/dd/yyyy", { locale: enUS })}`;
         }
 
         const collapseContainer = document.createElement('div');
@@ -145,7 +146,7 @@ export function displayTask() {
         taskCard.querySelector('.task-due-date').textContent = 'No due date';
     } else {
         const date = parseISO(activeTask.dueDate);
-        taskCard.querySelector('.task-due-date').textContent = `Due: ${format(date, "MM/dd/yyyy")}`;
+        taskCard.querySelector('.task-due-date').textContent = `Due: ${format(date, "MM/dd/yyyy", { locale: enUS })}`;
     }
     taskCard.querySelector('.task-description').textContent = activeTask.description;
     taskCard.querySelector('.task-priority').textContent = `Priority: ${activeTask.priority}`;
