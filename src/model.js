@@ -7,14 +7,6 @@ class Task {
         this.notes = notes;
         this.id = crypto.randomUUID();
     }
-
-    editTask(newTitle, newDescription, newDueDate, newPriority, newNotes) {
-        this.title = newTitle;
-        this.description = newDescription;
-        this.dueDate = newDueDate;
-        this.priority = newPriority;
-        this.notes = newNotes;
-    }
 }
 
 const myProjects = [];

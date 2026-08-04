@@ -108,7 +108,6 @@ function editTask(event) {
     const priority = formData.get('task_prio');
     const notes = formData.get('task_notes');
 
-    /*activeTask.editTask(title, description, dueDate, priority, notes);*/
     activeTask.title = title;
     activeTask.description = description;
     activeTask.dueDate = dueDate;
