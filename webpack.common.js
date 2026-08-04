@@ -1,9 +1,12 @@
 import path from 'node:path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { fileURLToPath } from 'node:url';
+import webpack from 'webpack';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const supportedLocales = ['en-us', 'de', 'es', 'fr'];
 
 export default {
     entry: {
@@ -14,6 +17,10 @@ export default {
             title: 'To-do List',
             template: "./src/template.html"
         }),
+        new webpack.ContextReplacementPlugin(
+            /date\-fns[\/\\]/,
+            new RegExp(`[/\\\\\\\\\\](${supportedLocales.join('|')})[/\\\\\\\\\\]`)
+        ),
     ],
     output: {
         filename: '[name].bundle.js',

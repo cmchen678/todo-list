@@ -2,23 +2,11 @@ import "./style.css";
 import { Task, Project, myProjects } from "./model.js";
 import { displayProjects, displayProjectTitle, displayTasks, displayTask } from "./view.js";
 
-
 const addTaskBtns = document.querySelectorAll('.add-task-btn');
 addTaskBtns.forEach(button => {
     button.addEventListener('click', () => {
         const dialog = document.querySelector('#task-input');
         dialog.showModal();
-    })
-})
-
-const deleteTaskBtns = document.querySelectorAll('delete-task-btn');
-deleteTaskBtns.forEach(button => {
-    button.addEventListener('click', event => {
-        const taskCard = event.target.closest('.task-card');
-        const id = taskCard.dataset.id;
-        const index = activeProject.tasks.findIndex(task => task.id === id);
-        activeProject.deleteTask(index);
-        console.log(activeProject);
     })
 })
 
@@ -69,7 +57,7 @@ cardContainer.addEventListener('click', (event) => {
     const index = activeProject.tasks.findIndex(task => task.id === id);
 
     if (event.target.classList.contains('delete-task-btn')) {
-        activeProject.deleteTask(index);
+        activeProject.tasks.splice(index, 1);
         displayProjects();
         displayTasks();
     } else if (event.target.classList.contains('edit-task-btn')) {
@@ -78,7 +66,7 @@ cardContainer.addEventListener('click', (event) => {
         activeTask = activeProject.tasks[index];
         editTaskForm.elements["task_title"].value = activeTask.title;
         editTaskForm.elements["task_desc"].value = activeTask.description;
-        editTaskForm.elements["due_date"].value = activeTask.dueDate;
+        editTaskForm.elements["edit_due_date"].value = activeTask.dueDate;
         editTaskForm.elements["task_prio"].value = activeTask.priority;
         editTaskForm.elements["task_notes"].value = activeTask.notes;
     } else {
@@ -100,11 +88,12 @@ function createTask(event) {
     const notes = formData.get('task_notes');
 
     const task = new Task(title, description, dueDate, priority, notes);
-    activeProject.addTaskToProject(task);
+    activeProject.tasks.push(task);
     displayProjects();
     displayTasks();
     taskForm.reset();
     dialog.close();
+    document.getElementById('due_date').valueAsDate = new Date();
 }
 
 function editTask(event) {
@@ -144,6 +133,7 @@ function createProject(event) {
     dialog.close();
 }
 
+document.getElementById('due_date').valueAsDate = new Date();
 const generalTasks = new Project('General');
 myProjects.push(generalTasks);
 export let activeProject = myProjects[0];

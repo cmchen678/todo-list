@@ -1,3 +1,4 @@
+import { format, parseISO } from "date-fns";
 import { myProjects } from "./model.js";
 import { activeProject, activeTask } from "./index.js";
 
@@ -101,7 +102,12 @@ export function displayTasks() {
 
         const dueDate = document.createElement('p');
         dueDate.classList.add('task-due-date');
-        dueDate.textContent = `Due: ${task.dueDate}`;
+        if (task.dueDate === '') {
+            dueDate.textContent = 'No due date';
+        } else {
+            const date = parseISO(task.dueDate);
+            dueDate.textContent = `Due: ${format(date,  "MM/dd/yyyy")}`;
+        }
 
         const collapseContainer = document.createElement('div');
         collapseContainer.classList.add('collapsible-container');
@@ -134,7 +140,13 @@ export function displayTask() {
     const id = activeTask.id;
     const taskCard = document.querySelector(`[data-id="${id}"]`);
     taskCard.querySelector('.task-title').textContent = activeTask.title;
-    taskCard.querySelector('.task-due-date').textContent = `Due: ${activeTask.dueDate}`;
+    const datePicker = document.querySelector('#edit_due_date');
+    if (!datePicker.value) {
+        taskCard.querySelector('.task-due-date').textContent = 'No due date';
+    } else {
+        const date = parseISO(activeTask.dueDate);
+        taskCard.querySelector('.task-due-date').textContent = `Due: ${format(date, "MM/dd/yyyy")}`;
+    }
     taskCard.querySelector('.task-description').textContent = activeTask.description;
     taskCard.querySelector('.task-priority').textContent = `Priority: ${activeTask.priority}`;
     taskCard.querySelector('.task-notes').textContent = activeTask.notes;

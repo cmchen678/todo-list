@@ -25,14 +25,6 @@ class Project {
         this.tasks = [];
         this.id = crypto.randomUUID();
     }
-
-    addTaskToProject(task) {
-        this.tasks.push(task);
-    }
-
-    deleteTask(index) {
-        this.tasks.splice(index, 1);
-    }
 }
 
 export { Task, myProjects, Project};
