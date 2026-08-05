@@ -9,7 +9,7 @@ class Task {
     }
 }
 
-const myProjects = JSON.parse(localStorage.getItem("myProjects") || []);
+const myProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
 
 class Project {
     constructor(title) {
