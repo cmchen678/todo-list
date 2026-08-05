@@ -1,6 +1,7 @@
 import "./style.css";
 import { Task, Project, myProjects } from "./model.js";
 import { displayProjects, displayProjectTitle, displayTasks, displayTask } from "./view.js";
+import { populateStorage } from "./storage.js";
 
 const addTaskBtns = document.querySelectorAll('.add-task-btn');
 addTaskBtns.forEach(button => {
@@ -20,6 +21,7 @@ projectList.addEventListener('click', (event) => {
 
     if (event.target.classList.contains('delete-project-btn')) {
         myProjects.splice(index, 1);
+        populateStorage();
         if (activeProject.id === id) {
             activeProject = myProjects[0];
             displayProjectTitle();
@@ -58,6 +60,7 @@ cardContainer.addEventListener('click', (event) => {
 
     if (event.target.classList.contains('delete-task-btn')) {
         activeProject.tasks.splice(index, 1);
+        populateStorage();
         displayProjects();
         displayTasks();
     } else if (event.target.classList.contains('edit-task-btn')) {
@@ -89,6 +92,7 @@ function createTask(event) {
 
     const task = new Task(title, description, dueDate, priority, notes);
     activeProject.tasks.push(task);
+    populateStorage();
     displayProjects();
     displayTasks();
     taskForm.reset();
@@ -113,6 +117,7 @@ function editTask(event) {
     activeTask.dueDate = dueDate;
     activeTask.priority = priority;
     activeTask.notes = notes;
+    populateStorage();
     displayProjects();
     displayTask();
     dialog.close();
@@ -130,6 +135,7 @@ function createProject(event) {
     myProjects.push(project);
     const lastIndex = myProjects.length - 1;
     activeProject = myProjects[lastIndex];
+    populateStorage();
     displayProjects();
     displayProjectTitle();
     displayTasks();
@@ -138,8 +144,10 @@ function createProject(event) {
 }
 
 document.getElementById('due_date').valueAsDate = new Date();
-const generalTasks = new Project('General');
-myProjects.push(generalTasks);
+if (myProjects === []) {
+    const generalTasks = new Project('General');
+    myProjects.push(generalTasks);
+}
 export let activeProject = myProjects[0];
 export let activeTask;
 displayProjects();
