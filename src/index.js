@@ -144,9 +144,10 @@ function createProject(event) {
 }
 
 document.getElementById('due_date').valueAsDate = new Date();
-if (myProjects === []) {
+if (Array.isArray(myProjects) && myProjects.length === 0) {
     const generalTasks = new Project('General');
     myProjects.push(generalTasks);
+    populateStorage();
 }
 export let activeProject = myProjects[0];
 export let activeTask;
