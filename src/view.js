@@ -34,13 +34,8 @@ export function displayProjects() {
         taskList.classList.add('task-list');
 
         for (const task of project.tasks) {
-            const taskItem = document.createElement('div');
-            taskItem.classList.add('project-task');
-
             const title = document.createElement('h4');
-
             title.textContent = task.title;
-
             taskList.append(title);
         }
 
